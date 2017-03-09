@@ -1,0 +1,106 @@
+@import url("https://fonts.googleapis.com/css?family=Source+Code+Pro");
+@import url("https://fonts.googleapis.com/css?family=Open+Sans|Roboto:300,400");
+.welcome {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex; }
+  .welcome .welcome-message-container {
+    position: relative;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
+    -webkit-align-self: stretch;
+        -ms-flex-item-align: stretch;
+            align-self: stretch;
+    -webkit-align-content: center;
+        -ms-flex-line-pack: center;
+            align-content: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+        -ms-flex-pack: center;
+            justify-content: center; }
+    .welcome .welcome-message-container .welcome-message {
+      font-family: "Source Code Pro", monospace;
+      -webkit-align-self: center;
+          -ms-flex-item-align: center;
+                  -ms-grid-row-align: center;
+              align-self: center;
+      color: black;
+      text-transform: lowercase;
+      min-height: 1em;
+      margin: 0; }
+      .welcome .welcome-message-container .welcome-message.welcome-expanded {
+        -webkit-animation: expandWelcome 3s ease-in-out;
+                animation: expandWelcome 3s ease-in-out;
+        -webkit-animation-fill-mode: forwards;
+                animation-fill-mode: forwards;
+        background-color: black;
+        border-right: 2px solid black; }
+      .welcome .welcome-message-container .welcome-message.cursor-on {
+        border-right: 2px solid black; }
+
+@-webkit-keyframes expandWelcome {
+  0% {
+    height: 1em;
+    -webkit-box-flex: 0;
+    -webkit-flex: 0;
+            flex: 0; }
+  50% {
+    height: 100%;
+    -webkit-box-flex: 0;
+    -webkit-flex: 0;
+            flex: 0; }
+  100% {
+    height: 100%;
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+            flex: 1; } }
+
+@keyframes expandWelcome {
+  0% {
+    height: 1em;
+    -webkit-box-flex: 0;
+    -webkit-flex: 0;
+        -ms-flex: 0;
+            flex: 0; }
+  50% {
+    height: 100%;
+    -webkit-box-flex: 0;
+    -webkit-flex: 0;
+        -ms-flex: 0;
+            flex: 0; }
+  100% {
+    height: 100%;
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+        -ms-flex: 1;
+            flex: 1; } }
+
+@import url("https://fonts.googleapis.com/css?family=Source+Code+Pro");
+@import url("https://fonts.googleapis.com/css?family=Open+Sans|Roboto:300,400");
+body {
+  position: relative;
+  margin: 0;
+  padding: 0; }
+
+.vignette {
+  -webkit-box-shadow: inset 0 0 10em black;
+  box-shadow: inset 0 -0 10em black;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  content: ""; }
+
+.parallax-container {
+  overflow: hidden; }
