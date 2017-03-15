@@ -37,6 +37,7 @@ var paths = {
         js: './public/resources/js/',
         forms: './public/resources/forms/',
         images: './public/resources/images/',
+        videos: './public/resources/videos/',
         partials: './public/resources/partials',
     },
     dev: {
@@ -44,6 +45,7 @@ var paths = {
         pages: './src/pages/',
         components: './src/components/',
         images: './src/resources/images/',
+        videos: './src/resources/videos/',
         forms: './src/resources/forms/',
         data: './src/resources/data/data.json',
     }
@@ -131,6 +133,11 @@ gulp.task('images', ()=>{
     .pipe(gulp.dest(paths.build.images));
 });
 
+gulp.task('videos', ()=>{
+    return gulp.src(paths.dev.videos+'**/*')
+    .pipe(gulp.dest(paths.build.videos));
+});
+
 //Start a php server so we can look at our generated php files
 gulp.task('php-serve', ()=>{
     php.server({base: paths.build.root, port: 8020, keepalive: true});
@@ -168,7 +175,7 @@ gulp.task('watch',()=>{
 });
 
 //Build and compile everything
-gulp.task('build', ['sass', 'pug', 'js', 'images', 'php-forms']);
+gulp.task('build', ['sass', 'pug', 'js', 'images', 'videos', 'php-forms']);
 
 //Default task
 if(statics.isPHP){

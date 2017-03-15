@@ -1,0 +1,5 @@
+mixin video-background(path)
+    div(class='video-background parallax-element')
+        video(loop muted autoplay class='video-background-video')
+            source(src=path type='video/mp4')
+        div(class='video-background-darken')

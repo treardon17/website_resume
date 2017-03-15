@@ -1,6 +1,8 @@
 include ../../util/include/include-script.pug
+include ../video-background/video-background.pug
 
 +include-script('./resources/js/welcome.js')
 div(class="welcome parallax-container")
+    +video-background('./resources/videos/timelapse.mp4')
     div(class="welcome-message-container parallax-element")
         h1(class="welcome-message" id="welcome-message-1")
