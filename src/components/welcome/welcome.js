@@ -1,57 +1,64 @@
 class Welcome{
     constructor(){
         this.blinking = false;
-        this.writeToScreen()
+        this.element = $('.welcome')[0];
+        this.writer = '#welcome-message-1';
+        this.welcomeNavs = $(this.element).find('.welcome-nav');
+        this.welcomeNavButtons = $(this.element).find('.welcome-nav-button');
+        this.writeToScreen(this.writer);
     }
 
-    writeToScreen(){
-        let element = '#welcome-message-1';
-        this.startCursorBlink({element: element, timeBetweenBlinks: 700})
-        this.writeAndRemoveWordArray({element: element, array: ['Hi there', 'I\'m Tyler Reardon'], timeBetweenWords: 2000, timeBetweenLetters: 250, callback:()=>{
+    writeToScreen(writer){
+        this.startCursorBlink({writer: writer, timeBetweenBlinks: 700})
+        this.writeAndRemoveWordArray({writer: writer, array: ['Hi there', 'I\'m Tyler Reardon'], timeBetweenWords: 2000, timeBetweenLetters: 250, callback:()=>{
                 this.stopCursorBlink()
-                this.expandWelcome({element: element});
+                this.expandWelcome();
             }
         });
     }
 
-    expandWelcome(pObject = {element: null}){
-        $(pObject.element).addClass('welcome-expanded');
+    expandWelcome(){
+        $(this.writer).addClass('welcome-expanded');
+        $(this.welcomeNavs).addClass('welcome-nav-expanded');
+        $(this.welcomeNavButtons).addClass('welcome-nav-button-visible');
     }
 
-    contractWelcome(pObject = {element: null}){
-        $(pObject.element).removeClass('welcome-expanded');
+    contractWelcome(){
+        $(this.writer).removeClass('welcome-expanded');
+        $(this.welcomeNavs).removeClass('welcome-nav-expanded');
+        $(this.welcomeNavButtons).removeClass('welcome-nav-button-visible');
     }
 
-    startCursorBlink(pObject = {element: null, timeBetweenBlinks: 0}){
+    startCursorBlink(pObject = {writer: null, timeBetweenBlinks: 0}){
         this.blinking = true;
-        this.blinkCursorRepeat({element: pObject.element, timeBetweenBlinks: pObject.timeBetweenBlinks});
+        this.blinkCursorRepeat({writer: pObject.writer, timeBetweenBlinks: pObject.timeBetweenBlinks});
     }
 
     stopCursorBlink(){
         this.blinking = false;
     }
 
-    blinkCursorRepeat(pObject = {element: null, timeBetweenBlinks: 0}){
+    blinkCursorRepeat(pObject = {writer: null, timeBetweenBlinks: 0}){
         if(this.blinking){
-            this.blinkCursor({element: pObject.element, timeBetweenBlinks: pObject.timeBetweenBlinks, callback: ()=>{
+            this.blinkCursor({writer: pObject.writer, timeBetweenBlinks: pObject.timeBetweenBlinks, callback: ()=>{
                 setTimeout(()=>{
-                    this.blinkCursorRepeat({element: pObject.element, timeBetweenBlinks: pObject.timeBetweenBlinks});
+                    this.blinkCursorRepeat({writer: pObject.writer, timeBetweenBlinks: pObject.timeBetweenBlinks});
                 }, pObject.timeBetweenBlinks)
             }});
         }
     }
 
-    blinkCursor(pObject = {element: null, timeBetweenBlinks: 0, callback: ()=>{}}){
-        $(pObject.element).addClass('cursor-on');
+    blinkCursor(pObject = {writer: null, timeBetweenBlinks: 0, callback: ()=>{}}){
+        $(pObject.writer).addClass('cursor-on');
         setTimeout(()=>{
-            $(pObject.element).removeClass('cursor-on');
+            $(pObject.writer).removeClass('cursor-on');
             if(typeof pObject.callback === 'function'){
                 pObject.callback();
             }
         }, pObject.timeBetweenBlinks);
     }
 
-    writeAndRemoveWordArray(pObject = {element: null, array: [], timeBetweenWords: 0, timeBetweenLetters: 0, callback: ()=>{}}){
+    writeAndRemoveWordArray(pObject = {writer: null, array: [], timeBetweenWords: 0, timeBetweenLetters: 0, callback: ()=>{}}){
         if(pObject.array.length == 0){
             if(typeof pObject.callback === 'function'){
                 pObject.callback();
@@ -59,32 +66,32 @@ class Welcome{
             return;
         }
 
-        this.writeAndRemoveWord({element: pObject.element, word: pObject.array[0], timeBetweenLetters: pObject.timeBetweenLetters, timeBetweenWords: pObject.timeBetweenWords, callback: ()=>{
+        this.writeAndRemoveWord({writer: pObject.writer, word: pObject.array[0], timeBetweenLetters: pObject.timeBetweenLetters, timeBetweenWords: pObject.timeBetweenWords, callback: ()=>{
             let slicedArray = pObject.array.slice(1, pObject.array.length);
-            this.writeAndRemoveWordArray({element: pObject.element, array: slicedArray, timeBetweenWords: pObject.timeBetweenWords, timeBetweenLetters: pObject.timeBetweenLetters, callback: pObject.callback})
+            this.writeAndRemoveWordArray({writer: pObject.writer, array: slicedArray, timeBetweenWords: pObject.timeBetweenWords, timeBetweenLetters: pObject.timeBetweenLetters, callback: pObject.callback})
         }});
     }
 
-    writeAndRemoveWord(pObject = {element: null, word: '', timeBetweenLetters: 0, timeBetweenWords: 0, callback:()=>{}}){
-        this.writeWordToElement({element: pObject.element, word: pObject.word, timeBetween: pObject.timeBetweenLetters*(2/3), callback: ()=>{
+    writeAndRemoveWord(pObject = {writer: null, word: '', timeBetweenLetters: 0, timeBetweenWords: 0, callback:()=>{}}){
+        this.writeWordTowriter({writer: pObject.writer, word: pObject.word, timeBetween: pObject.timeBetweenLetters*(2/3), callback: ()=>{
             setTimeout(()=>{
-                this.removeWordFromElement({element: pObject.element, timeBetween: pObject.timeBetweenLetters*(1/3), callback: pObject.callback});
+                this.removeWordFromwriter({writer: pObject.writer, timeBetween: pObject.timeBetweenLetters*(1/3), callback: pObject.callback});
             }, pObject.timeBetweenWords);
         }});
     }
 
-    writeWordToElement(pObject = {element: null, word: '', timeBetween: 0, callback: ()=>{}}){
-        let element = $(pObject.element);
+    writeWordTowriter(pObject = {writer: null, word: '', timeBetween: 0, callback: ()=>{}}){
+        let writer = $(pObject.writer);
         let word = pObject.word;
-        if(element === null || word === null || word === '')
+        if(writer === null || word === null || word === '')
             return;
 
         for(let i = 0; i < word.length; i++){
             let partial = word.slice(0,i+1);
             setTimeout(()=>{
-                $(element).text(partial);
+                $(writer).text(partial);
                 if(this.blinking){
-                    $(element).addClass('cursor-on');
+                    $(writer).addClass('cursor-on');
                 }
             }, pObject.timeBetween*i);
         }
@@ -96,18 +103,18 @@ class Welcome{
         }
     }
 
-    removeWordFromElement(pObject = {element: null, timeBetween: 0, callback: ()=>{}}){
-        let element = $(pObject.element);
-        if(element === null)
+    removeWordFromwriter(pObject = {writer: null, timeBetween: 0, callback: ()=>{}}){
+        let writer = $(pObject.writer);
+        if(writer === null)
             return;
 
-        let word = $(element).text();
+        let word = $(writer).text();
         for(let i = word.length; i >= 0; i--){
             let partial = word.slice(0,i);
             setTimeout(()=>{
-                $(element).text(partial);
+                $(writer).text(partial);
                 if(this.blinking){
-                    $(element).addClass('cursor-on');
+                    $(writer).addClass('cursor-on');
                 }
             }, pObject.timeBetween*(word.length-i));
         }

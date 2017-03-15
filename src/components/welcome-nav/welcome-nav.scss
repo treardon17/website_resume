@@ -1,0 +1,64 @@
+@import "../../resources/sass/_fonts.scss";
+
+.welcome-nav{
+    position: relative;
+    flex: 1;
+    height: 0;
+    transition: 3s ease-in-out;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &.welcome-nav-expanded{
+        height: 100%;
+    }
+
+    &.welcome-nav-left{
+        align-self: flex-start;
+
+        .welcome-nav-background{
+            background-color: #091F6F;
+        }
+    }
+
+    &.welcome-nav-right{
+        align-self: flex-end;
+
+        .welcome-nav-background{
+            background-color: #A5A369;
+        }
+    }
+
+    >.welcome-nav-background{
+        position: absolute;
+        top: 0; bottom: 0; left: 0; right: 0;
+        opacity: 0.6;
+    }
+
+    >.welcome-nav-button{
+        width: 30%;
+        border: 2px solid white;
+        border-radius: 5px;
+        padding: 1em;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        text-transform: lowercase;
+        color: white;
+        font-family: $source-pro;
+        z-index: 1000;
+        transition:  3s opacity ease-in-out, 0.33s color ease-in-out, 0.33s background-color ease-in-out;
+        opacity: 0;
+
+        &:hover{
+            color: black;
+            background-color: white;
+        }
+
+        &.welcome-nav-button-visible{
+            opacity: 1;
+        }
+    }
+}

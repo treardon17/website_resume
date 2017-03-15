@@ -1,8 +1,12 @@
 include ../../util/include/include-script.pug
+include ../welcome-nav/welcome-nav.pug
 include ../video-background/video-background.pug
 
 +include-script('./resources/js/welcome.js')
 div(class="welcome parallax-container")
-    +video-background('./resources/videos/timelapse.mp4')
+    +video-background('./resources/videos/timelapse2.mp4')
     div(class="welcome-message-container parallax-element")
         h1(class="welcome-message" id="welcome-message-1")
+        div(class="welcome-nav-container")
+            +welcome-nav('welcome-nav-left', 'Projects', '#')
+            +welcome-nav('welcome-nav-right', 'Contact', '#')

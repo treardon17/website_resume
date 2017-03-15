@@ -18,8 +18,8 @@
     width: 100%;
     -o-object-fit: cover;
        object-fit: cover;
-    -o-object-position: center right;
-       object-position: center right; }
+    -o-object-position: center center;
+       object-position: center center; }
 
 @import url("https://fonts.googleapis.com/css?family=Source+Code+Pro");
 @import url("https://fonts.googleapis.com/css?family=Open+Sans|Roboto:300,400");
@@ -70,6 +70,16 @@
         border-right: 2px solid white; }
       .welcome .welcome-message-container .welcome-message.cursor-on {
         border-right: 2px solid white; }
+    .welcome .welcome-message-container .welcome-nav-container {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex; }
 
 @-webkit-keyframes expandWelcome {
   0% {
@@ -102,6 +112,83 @@
   100% {
     height: 100%;
     min-height: 0; } }
+
+@import url("https://fonts.googleapis.com/css?family=Source+Code+Pro");
+@import url("https://fonts.googleapis.com/css?family=Open+Sans|Roboto:300,400");
+.welcome-nav {
+  position: relative;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  height: 0;
+  -webkit-transition: 3s ease-in-out;
+  transition: 3s ease-in-out;
+  overflow: hidden;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center; }
+  .welcome-nav.welcome-nav-expanded {
+    height: 100%; }
+  .welcome-nav.welcome-nav-left {
+    -webkit-align-self: flex-start;
+        -ms-flex-item-align: start;
+            align-self: flex-start; }
+    .welcome-nav.welcome-nav-left .welcome-nav-background {
+      background-color: #091F6F; }
+  .welcome-nav.welcome-nav-right {
+    -webkit-align-self: flex-end;
+        -ms-flex-item-align: end;
+            align-self: flex-end; }
+    .welcome-nav.welcome-nav-right .welcome-nav-background {
+      background-color: #A5A369; }
+  .welcome-nav > .welcome-nav-background {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: 0.6; }
+  .welcome-nav > .welcome-nav-button {
+    width: 30%;
+    border: 2px solid white;
+    -webkit-border-radius: 5px;
+            border-radius: 5px;
+    padding: 1em;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    text-decoration: none;
+    text-transform: lowercase;
+    color: white;
+    font-family: "Source Code Pro", monospace;
+    z-index: 1000;
+    -webkit-transition: 3s opacity ease-in-out, 0.33s color ease-in-out, 0.33s background-color ease-in-out;
+    transition: 3s opacity ease-in-out, 0.33s color ease-in-out, 0.33s background-color ease-in-out;
+    opacity: 0; }
+    .welcome-nav > .welcome-nav-button:hover {
+      color: black;
+      background-color: white; }
+    .welcome-nav > .welcome-nav-button.welcome-nav-button-visible {
+      opacity: 1; }
 
 @import url("https://fonts.googleapis.com/css?family=Source+Code+Pro");
 @import url("https://fonts.googleapis.com/css?family=Open+Sans|Roboto:300,400");
